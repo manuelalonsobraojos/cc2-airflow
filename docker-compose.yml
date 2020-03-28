@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - './app_v1.py:/app_v1.py'
+    links:
+      - mongo
+    ports:
+      - "5000:5000"
+    command: python3 app_v1.py
+
+  mongo: 
+    container_name: my-mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongo:
+  app_v1:
+    driver: local

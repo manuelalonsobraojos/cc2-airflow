@@ -1,0 +1,6 @@
+pandas
+pymongo
+flask
+pmdarima
+numpy
+statsmodels
