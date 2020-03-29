@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web:
+  api_v1:
     build: .
     volumes:
       - './app_v1.py:/app_v1.py'
@@ -9,6 +9,14 @@ services:
     ports:
       - "5000:5000"
     command: python3 app_v1.py
+
+  api_v2:
+    build: .
+    volumes:
+      - './app_v2.py:/app_v2.py'
+    ports:
+      - "5001:5001"
+    command: python3 app_v2.py
 
   mongo: 
     container_name: my-mongodb

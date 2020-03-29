@@ -10,37 +10,37 @@ mongo_client=MongoClient('mongodb://my-mongodb:27017/')
 
 @app.route('/servicio/v1/prediccion/24horas/')
 def prediction24():
-	
+	hour = 24
 	db=mongo_client.cc
 	collection = db.prediction
 	data = collection.find_one({'index':'SF'})
-	data_humidity = algorithmH(data, 24)
-	data_temperature = algorithmT(data, 24)
-	data_dict = doDict(data_humidity, data_temperature)
+	data_humidity = algorithmH(data, hour)
+	data_temperature = algorithmT(data, hour)
+	data_dict = doDict(data_humidity, data_temperature, hour)
 
 	return jsonify(data_dict)
 
 @app.route('/servicio/v1/prediccion/48horas/')
 def prediction48():
-	
+	hour = 48
 	db=mongo_client.cc
 	collection = db.prediction
 	data = collection.find_one({'index':'SF'})
-	algorithmH(data, 48)
-	algorithmT(data, 48)
-	data_dict = doDict(data_humidity, data_temperature)
+	data_humidity = algorithmH(data, hour)
+	data_temperature = algorithmT(data, hour)
+	data_dict = doDict(data_humidity, data_temperature, hour)
 
 	return jsonify(data_dict)
 
 @app.route('/servicio/v1/prediccion/72horas/')
 def prediction72():
-	
+	hour = 72
 	db=mongo_client.cc
 	collection = db.prediction
 	data = collection.find_one({'index':'SF'})
-	algorithmH(data, 72)
-	algorithmT(data, 72)
-	data_dict = doDict(data_humidity, data_temperature)
+	data_humidity = algorithmH(data, hour)
+	data_temperature = algorithmT(data, hour)
+	data_dict = doDict(data_humidity, data_temperature, hour)
 
 	return jsonify(data_dict)
 
@@ -92,9 +92,9 @@ def algorithmT(collection, hours):
 	print(fc)
 	return fc
 
-def doDict(data_humidity, data_temperature):
+def doDict(data_humidity, data_temperature, hour):
 	data_dict = []
-	for i in range(0, 24):
+	for i in range(0, hour):
 		data = {}
 		data["hour"] =i
 		data["temperature"] = data_temperature[i]

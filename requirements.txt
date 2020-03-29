@@ -4,3 +4,5 @@ flask
 pmdarima
 numpy
 statsmodels
+beautifulsoup4
+requests
