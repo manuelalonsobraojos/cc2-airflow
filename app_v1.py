@@ -6,7 +6,7 @@ import pandas as pd
 from pymongo import MongoClient
 
 app = Flask(__name__)
-mongo_client=MongoClient('mongodb://my-mongodb:27017/')
+mongo_client=MongoClient('mongodb://127.0.0.1:27017/')
 
 @app.route('/servicio/v1/prediccion/24horas/')
 def prediction24():
